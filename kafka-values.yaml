@@ -1,0 +1,8 @@
+## Configuración de Kafka
+kafka:
+  ## Lista de topics a crear automáticamente
+  topics:
+  - name: nombre-del-topic
+    partitions: 1
+    replicationFactor: 1
+    # Configuraciones adicionales como `config` pueden ser agregadas aquí
