@@ -29,10 +29,10 @@ kafka:
 
   ## Habilita el acceso externo (Si es necesario para tu caso de uso)
   service:
-    type: LoadBalancer
+    type: NodePort
     port: 9094
     nodePorts:
-      client: 31090
+      client: 31090 # Este es opcional y debe estar dentro del rango permitido por tu clúster
 
   ## Configuraciones de métricas para monitoreo
   metrics:
