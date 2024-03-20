@@ -1,42 +1,82 @@
-kafka:
-  ## Habilita la persistencia
-  persistence:
-    enabled: true
-    size: 1Gi # Ajusta el tamaño según tus necesidades
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+global:
+  imageRegistry: # Leave blank to use the default Docker registry for Kafka images
+  imagePullSecrets:
+    - name: # If required, specify the secret name for pulling images
 
-  ## Configuración de autenticación básica
-  auth:
-    clientProtocol: sasl
-    saslMechanisms: plain
-    saslInterBrokerProtocol: plain
-    saslJaasClientUsers: user1,user2
-    saslJaasClientPasswords: password1,password2
+## Bitnami Kafka image version
+## ref: https://hub.docker.com/r/bitnami/kafka/tags/
+##
+image:
+  registry: docker.io
+  repository: bitnami/kafka
+  tag: latest
+  pullPolicy: IfNotPresent
+  pullSecrets: [] # Specify docker-registry secret names as an array
 
-  ## Lista de topics a crear automáticamente
-  topics:
-  - name: topic-t1
+## Specify each Kafka broker properties in the following format:
+##   - id: ID of the Kafka broker (e.g., 0)
+##     configOverrides: # Specify Kafka configuration overrides here (e.g., "log.retention.hours": "168")
+##     ports:
+##       - name: client
+##         port: 9092
+##       - name: external
+##         port: 9094
+##
+## Use the 'externalAccess' section to configure the external access
+##
+replicaCount: 1
+
+## Kafka Configuration Overrides
+## Use this to override Kafka's default configuration
+##
+configOverrides:
+  server: 
+    - "auto.create.topics.enable=true"
+
+## Configure Kafka Topics
+##
+topics:
+  - name: topic-test1
     partitions: 1
     replicationFactor: 1
 
-  ## Configuraciones de recursos para optimizar el uso
-  # resources:
-  #   limits:
-  #     cpu: "2"
-  #     memory: "2048Mi"
-  #   requests:
-  #     cpu: "1"
-  #     memory: "1536Mi"
+## Persistence
+##
+persistence:
+  enabled: true
+  size: 1Gi
+  storageClass: # Specify your storage class here, or leave blank to use the default
 
-  ## Habilita el acceso externo (Si es necesario para tu caso de uso)
+## Configure external access
+## If you enable external access, consider setting up the 'service.type' to 'NodePort' or 'LoadBalancer'
+##
+externalAccess:
+  enabled: true
   service:
     type: NodePort
     port: 9094
     nodePorts:
-      client: 31090 # Este es opcional y debe estar dentro del rango permitido por tu clúster
+      - name: external
+        nodePort: # Optionally, specify a nodePort. Leave blank to auto-assign
 
-  ## Configuraciones de métricas para monitoreo
-  metrics:
-    kafka:
-      enabled: true
-    jmx:
-      enabled: true
+## Zookeeper chart configuration
+## This is required as Kafka depends on Zookeeper
+##
+zookeeper:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 1Gi
+
+## Additional pod and container security context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+##
+podSecurityContext:
+  fsGroup: 1001
+containerSecurityContext:
+  runAsUser: 1001
+  
