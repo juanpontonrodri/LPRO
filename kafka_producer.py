@@ -11,7 +11,7 @@ producer = KafkaProducer(
     security_protocol="SASL_PLAINTEXT",
     sasl_mechanism="SCRAM-SHA-256",
     sasl_plain_username="user1",
-    sasl_plain_password="ubi3fS3LII",  # Usa la contraseña real aquí
+    sasl_plain_password="SASL_PASSWORD_PLACEHOLDER",
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
@@ -23,7 +23,7 @@ def generate_random_message():
     }
 
 # Envía mensajes aleatorios al topic
-topic_name = 'test'
+topic_name = 'topic-test1'
 try:
     for _ in range(100):  # Cambia 100 por el número de mensajes que quieras enviar
         message = generate_random_message()
