@@ -23,4 +23,4 @@ auth:
   clientUsers:
     - user1 # Assuming user1 is your desired client user
   clientPasswords:
-    - password1 # in bas64 format is ubi3fS3LII
+    - password1 

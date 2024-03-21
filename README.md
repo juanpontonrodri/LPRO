@@ -45,13 +45,13 @@ kubectl run kafka-client --restart='Never' --image docker.io/bitnami/kafka:3.7.0
 kubectl cp --namespace default client.properties kafka-client:/tmp/client.properties
 kubectl exec --tty -i kafka-client --namespace default -- bash
 
-    PRODUCER:
+PRODUCER:
         kafka-console-producer.sh \
             --producer.config /tmp/client.properties \
             --broker-list kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092 \
             --topic test
 
-    CONSUMER:
+CONSUMER:
         kafka-console-consumer.sh \
             --consumer.config /tmp/client.properties \
             --bootstrap-server kafka.default.svc.cluster.local:9092 \
