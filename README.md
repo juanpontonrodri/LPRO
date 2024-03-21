@@ -49,13 +49,13 @@ kubectl exec --tty -i kafka-client --namespace default -- bash
         kafka-console-producer.sh \
             --producer.config /tmp/client.properties \
             --broker-list kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092 \
-            --topic test
+            --topic topic-test1
 
     CONSUMER:
         kafka-console-consumer.sh \
             --consumer.config /tmp/client.properties \
             --bootstrap-server kafka.default.svc.cluster.local:9092 \
-            --topic test \
+            --topic topic-test-1 \
             --from-beginning
 ```
 
