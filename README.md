@@ -20,6 +20,8 @@ Install kind if needed
 #follow steps at the end of previous command
  
 brew install kind
+
+kind create cluster
 ```
 
 ## Install kafka 
@@ -29,3 +31,6 @@ helm repo update
 
 helm install mi-kafka bitnami/kafka -f https://raw.githubusercontent.com/juanpontonrodri/LPRO/main/kafka-values.yaml
 ```
+
+## Testing 
+Simple test with kafka-client pod:
