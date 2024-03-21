@@ -69,10 +69,6 @@ kubectl run python-kafka --image=python:3.9-slim --restart=Never --namespace=def
 chmod +x prepare_and_copy.sh
 ./prepare_and_copy.sh
 
-
-#install kafka-python
-kubectl exec -it python-kafka -- pip install kafka-python
-
 #execute the scripts
 kubectl exec -it python-kafka -- python /kafka_producer.py
 kubectl exec -it python-kafka -- python /kafka_consumer.py

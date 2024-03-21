@@ -5,13 +5,11 @@ import time
 
 # Configura el productor de Kafka
 producer = KafkaProducer(
-    bootstrap_servers=['kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092',
-                       'kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092',
-                       'kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092'],
+    bootstrap_servers=['172.18.0.2:31090'],
     security_protocol="SASL_PLAINTEXT",
     sasl_mechanism="SCRAM-SHA-256",
     sasl_plain_username="user1",
-    sasl_plain_password="SASL_PASSWORD_PLACEHOLDER",
+    sasl_plain_password="WVlCagOjSj",
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
