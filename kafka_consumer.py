@@ -3,7 +3,7 @@ import json
 
 # Configuración del consumidor de Kafka
 consumer = KafkaConsumer(
-    'topic-test1',  # El nombre de tu topic
+    'test',  # El nombre de tu topic
     bootstrap_servers=['kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092',
                        'kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092',
                        'kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092'],

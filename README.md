@@ -36,7 +36,7 @@ helm install kafka bitnami/kafka -f kafka-values.yaml
 Simple test with kafka-client pod following the steps after installation completed:
 
 NOTE: change the password in the client.properties file to the one obtained by the command 
-````
+```
 kubectl get secret kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1
 ```
 
@@ -49,13 +49,13 @@ kubectl exec --tty -i kafka-client --namespace default -- bash
         kafka-console-producer.sh \
             --producer.config /tmp/client.properties \
             --broker-list kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092,kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092 \
-            --topic topic-test1
+            --topic test
 
     CONSUMER:
         kafka-console-consumer.sh \
             --consumer.config /tmp/client.properties \
             --bootstrap-server kafka.default.svc.cluster.local:9092 \
-            --topic topic-test-1 \
+            --topic test \
             --from-beginning
 ```
 

@@ -8,7 +8,7 @@ configOverrides:
 
 ## Configure Kafka Topics
 topics:
-  - name: topic-test1
+  - name: test
     partitions: 1
     replicationFactor: 1
 

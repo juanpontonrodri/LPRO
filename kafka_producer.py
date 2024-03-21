@@ -23,7 +23,7 @@ def generate_random_message():
     }
 
 # Envía mensajes aleatorios al topic
-topic_name = 'topic-test1'
+topic_name = 'test'
 try:
     for _ in range(100):  # Cambia 100 por el número de mensajes que quieras enviar
         message = generate_random_message()
