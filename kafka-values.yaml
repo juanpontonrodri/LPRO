@@ -1,42 +1,26 @@
-kafka:
-  ## Habilita la persistencia
-  persistence:
-    enabled: true
-    size: 1Gi # Ajusta el tamaño según tus necesidades
+## Configure the Kafka cluster
+replicaCount: 1
 
-  ## Configuración de autenticación básica
-  auth:
-    clientProtocol: sasl
-    saslMechanisms: plain
-    saslInterBrokerProtocol: plain
-    saslJaasClientUsers: user1,user2
-    saslJaasClientPasswords: password1,password2
+## Kafka Configuration Overrides
+configOverrides:
+  server:
+    - "auto.create.topics.enable=true"
 
-  ## Lista de topics a crear automáticamente
-  topics:
-  - name: topic-t1
+## Configure Kafka Topics
+topics:
+  - name: topic-test1
     partitions: 1
     replicationFactor: 1
 
-  ## Configuraciones de recursos para optimizar el uso
-  # resources:
-  #   limits:
-  #     cpu: "2"
-  #     memory: "2048Mi"
-  #   requests:
-  #     cpu: "1"
-  #     memory: "1536Mi"
+## Persistence configuration
+persistence:
+  enabled: true
+  size: 1Gi
+  storageClass: "" # Leave as an empty string to use the default storage class
 
-  ## Habilita el acceso externo (Si es necesario para tu caso de uso)
-  service:
-    type: LoadBalancer
-    port: 9094
-    nodePorts:
-      client: 31090
-
-  ## Configuraciones de métricas para monitoreo
-  metrics:
-    kafka:
-      enabled: true
-    jmx:
-      enabled: true
+## Kafka Client Users (add this section)
+auth:
+  clientUsers:
+    - user1 # Assuming user1 is your desired client user
+  clientPasswords:
+    - password1 # in bas64 format is ubi3fS3LII
