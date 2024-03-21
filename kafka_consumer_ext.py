@@ -4,13 +4,11 @@ import json
 # Configuración del consumidor de Kafka
 consumer = KafkaConsumer(
     'test',  # El nombre de tu topic
-    bootstrap_servers=['kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092',
-                       'kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092',
-                       'kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092'],
-    security_protocol="SASL_PLAINTEXT",
-    sasl_mechanism="SCRAM-SHA-256",
-    sasl_plain_username="user1",
-    sasl_plain_password="SASL_PASSWORD_PLACEHOLDER",
+    bootstrap_servers=['172.18.0.2:31090'],
+    #security_protocol="SASL_PLAINTEXT",
+    #sasl_mechanism="SCRAM-SHA-256",
+    #sasl_plain_username="user1",
+    #sasl_plain_password="SASL_PASSWORD_PLACEHOLDER",
     auto_offset_reset='earliest',
     group_id='my-group',
     value_deserializer=lambda x: x.decode('utf-8')

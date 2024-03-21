@@ -19,8 +19,13 @@ persistence:
   storageClass: "" # Leave as an empty string to use the default storage class
 
 ## Kafka Client Users (add this section)
-auth:
-  clientUsers:
-    - user1 # Assuming user1 is your desired client user
-  clientPasswords:
-    - password1 
+
+#auth:
+#  clientUsers:
+#    - user1 # Assuming user1 is your desired client user
+#  clientPasswords:
+#    - password1 
+
+service:
+  type: NodePort
+  nodePort: 31090
