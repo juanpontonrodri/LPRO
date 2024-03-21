@@ -82,3 +82,4 @@ kubectl exec -it python-kafka -- python /kafka_consumer.py
 kubectl exec -it python-kafka -- /bin/bash
 
 ```
+

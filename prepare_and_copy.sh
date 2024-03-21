@@ -8,8 +8,8 @@ sed "s/SASL_PASSWORD_PLACEHOLDER/$PASSWORD/g" kafka_producer.py > kafka_producer
 sed "s/SASL_PASSWORD_PLACEHOLDER/$PASSWORD/g" kafka_consumer.py > kafka_consumer_temp.py
 
 # Copiar los scripts modificados al contenedor
-kubectl cp kafka_producer_temp.py default/python-kafka-producer:/kafka_producer.py
-kubectl cp kafka_consumer_temp.py default/python-kafka-producer:/kafka_consumer.py
+kubectl cp kafka_producer_temp.py default/python-kafka:/kafka_producer.py
+kubectl cp kafka_consumer_temp.py default/python-kafka:/kafka_consumer.py
 
 # Limpieza: eliminar los archivos temporales
 rm kafka_producer_temp.py kafka_consumer_temp.py
